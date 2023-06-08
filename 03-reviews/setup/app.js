@@ -79,5 +79,8 @@ prevBtn.addEventListener('click', ()=>{
 
 // Show random person
 randomBtn.addEventListener('click', ()=>{
-
+  // Generate random values between 0 - 3
+  currentItem = Math.floor(Math.random() * reviews.length)
+  console.log(currentItem);
+  showPerson(currentItem)
 })
