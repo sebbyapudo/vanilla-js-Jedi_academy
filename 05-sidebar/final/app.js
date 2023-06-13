@@ -10,3 +10,9 @@ toggleBtn.addEventListener('click', ()=>{
     sidebar.classList.remove('show-sidebar')
   }
 })
+
+closeBtn.addEventListener('click', ()=>{
+  if(sidebar.classList.contains('show-sidebar')) {
+    sidebar.classList.remove('show-sidebar')
+  }
+})
