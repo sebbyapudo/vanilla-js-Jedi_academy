@@ -1,3 +1,7 @@
+// get only unique category - HARDEST ONE
+// Iterate over the categories return buttons
+// make sure to select buttons when they're available
+
 const menu = [
   {
     id: 1,
@@ -82,11 +86,27 @@ const menu = [
 ];
 
 const sectionCenter = document.querySelector('.section-center');
-const filterBtns = document.querySelectorAll('.filter-btn')
+const container = document.querySelector('.btn-container');
+const filterBtns = document.querySelectorAll('.filter-btn');
+
 
 // load items
 window.addEventListener('DOMContentLoaded', ()=>{
   displayMenuItems(menu)  
+
+const categories = menu.reduce((values,item) => {
+  if(!values.includes(item.category)) {
+    values.push(item.category)
+  }
+  return values;
+}, ['all'])
+  const categoryBtns = categories.map((category) => {
+    return `
+    <button class="filter-btn" type="button"  data-id="${category}">${category}</button>
+    `
+  }).join('')
+  console.log(categoryBtns);
+container.innerHTML = categoryBtns;
 })
 
 // filter items
@@ -127,6 +147,7 @@ function displayMenuItems(menuItems) {
     `
   }).join("")
   sectionCenter.innerHTML = displayMenu;
+  
 }
 
 
