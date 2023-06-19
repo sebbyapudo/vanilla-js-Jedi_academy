@@ -87,7 +87,6 @@ const menu = [
 
 const sectionCenter = document.querySelector('.section-center');
 const container = document.querySelector('.btn-container');
-const filterBtns = document.querySelectorAll('.filter-btn');
 
 
 // load items
@@ -107,7 +106,7 @@ const categories = menu.reduce((values,item) => {
   }).join('')
   console.log(categoryBtns);
 container.innerHTML = categoryBtns;
-})
+const filterBtns = document.querySelectorAll('.filter-btn');
 
 // filter items
 filterBtns.forEach((btn) => {
@@ -126,6 +125,8 @@ filterBtns.forEach((btn) => {
       displayMenuItems(menuCategory)
     }
   })
+})
+
 })
 
 
