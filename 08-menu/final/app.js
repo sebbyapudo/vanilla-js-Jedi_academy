@@ -92,41 +92,7 @@ const container = document.querySelector('.btn-container');
 // load items
 window.addEventListener('DOMContentLoaded', ()=>{
   displayMenuItems(menu)  
-
-const categories = menu.reduce((values,item) => {
-  if(!values.includes(item.category)) {
-    values.push(item.category)
-  }
-  return values;
-}, ['all'])
-  const categoryBtns = categories.map((category) => {
-    return `
-    <button class="filter-btn" type="button"  data-id="${category}">${category}</button>
-    `
-  }).join('')
-  console.log(categoryBtns);
-container.innerHTML = categoryBtns;
-const filterBtns = document.querySelectorAll('.filter-btn');
-
-// filter items
-filterBtns.forEach((btn) => {
-  btn.addEventListener('click', (e) => {
-    const category = e.currentTarget.dataset.id;
-    const menuCategory = menu.filter((menuItems) => {
-      if(menuItems.category === category) {
-        return menuItems;
-      } 
-    })
-    console.log(menuCategory);
-    if(category === 'all') {
-      displayMenuItems(menu)
-    } 
-    else {
-      displayMenuItems(menuCategory)
-    }
-  })
-})
-
+  displayMenuButtons()
 })
 
 
@@ -147,8 +113,42 @@ function displayMenuItems(menuItems) {
         </article>
     `
   }).join("")
-  sectionCenter.innerHTML = displayMenu;
-  
+  sectionCenter.innerHTML = displayMenu; 
 }
 
+function displayMenuButtons() {
+  const categories = menu.reduce((values,item) => {
+    if(!values.includes(item.category)) {
+      values.push(item.category)
+    }
+    return values;
+  }, ['all'])
+    const categoryBtns = categories.map((category) => {
+      return `
+      <button class="filter-btn" type="button"  data-id="${category}">${category}</button>
+      `
+    }).join('')
+    console.log(categoryBtns);
+  container.innerHTML = categoryBtns;
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  
+  // filter items
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const category = e.currentTarget.dataset.id;
+      const menuCategory = menu.filter((menuItems) => {
+        if(menuItems.category === category) {
+          return menuItems;
+        } 
+      })
+      console.log(menuCategory);
+      if(category === 'all') {
+        displayMenuItems(menu)
+      } 
+      else {
+        displayMenuItems(menuCategory)
+      }
+    })
+  })
+}
 
