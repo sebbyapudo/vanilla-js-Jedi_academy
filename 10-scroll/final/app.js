@@ -39,7 +39,37 @@ window.addEventListener('scroll', () => {
   }
 
   console.log(navbarHeight, scrollHeight);
+
+  // show topLink
+  if(scrollHeight > 500) {
+    topLink.classList.add('show-link')
+  }
+  else {
+    topLink.classList.remove('show-link')
+  }
+})
+
+topLink.addEventListener('click', () => {
+  scrollHeight.style.height = `${0}px`
 })
 
 // ********** smooth scroll ************
 // select links
+const scrollLinks = document.querySelectorAll('.scroll-link');
+scrollLinks.forEach((scrollLink) => {
+  scrollLink.addEventListener('click', (e) => {
+    // prevent default
+    e.preventDefault()
+    // navigate to specific spot
+    const id = e.currentTarget.getAttribute("href").slice(1);
+    const element = document.getElementById(id);
+    let position = element.offsetTop; 
+    window.scrollTo(
+      {
+        left: 0,
+        top: position, 
+      }
+    )
+    linksContainer.style.height = 0;
+  })
+})
